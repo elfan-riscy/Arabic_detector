@@ -1,0 +1,61 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'dev.flutter.flutter-gradle-plugin' // Flutter plugin
+}
+
+android {
+    namespace 'com.example.arabic_sentence_detection'  // Replace this with your actual package name
+    compileSdkVersion 35
+
+    defaultConfig {
+        applicationId "com.example.arabic_sentence_detection"  // Replace this with your actual package name
+        minSdkVersion 26
+        targetSdkVersion 35
+        versionCode 1
+        versionName "1.0"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            shrinkResources false
+        }
+    }
+}
+
+dependencies {
+    // TensorFlow Lite dependencies
+    implementation 'org.tensorflow:tensorflow-lite:2.16.1'  // TensorFlow Lite
+    implementation 'org.tensorflow:tensorflow-lite-select-tf-ops:2.13.0'  // TensorFlow Lite Select Ops
+
+    // Kotlin Standard Library (versi kompatibel)
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.24"
+
+    // Android dependencies
+    implementation 'androidx.camera:camera-core:1.4.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
+    // Testing dependencies
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+}
+
+
+flutter {
+    source '../..'
+}
